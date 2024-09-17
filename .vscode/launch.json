@@ -5,10 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python 调试程序: pikpak_captcha 模块",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pikpak_captcha.captcha_slide_img"
+        },
+        {
             "name": "运行服务器",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/server.py",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "google_colab",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/google_colab.py",
             "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
