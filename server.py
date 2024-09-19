@@ -3,10 +3,11 @@ import traceback
 from flask import Flask, request, jsonify
 
 from pikpak_captcha import slider_validation
+
 app = Flask(__name__)
 
 
-@app.route('/api/login', methods=['GET'])
+@app.route("/api/login", methods=["GET"])
 def get_data():
     # 获取请求中的 JSON 数据
     url = request.args.get("url")
@@ -21,19 +22,27 @@ def get_data():
             error = e
     if token and token != "":
         response_data = {
-            'url_received': url,
-            'token': token,
+            "url_received": url,
+            "token": token,
             "code": 200,
         }
         return jsonify(response_data)
     else:
         response_data = {
-            'url_received': url,
+            "url_received": url,
             "code": -1,
-            'token': str(error) + str(traceback.format_exc()),
+            "token": str(error) + str(traceback.format_exc()),
         }
         return jsonify(response_data), 400
 
 
-if __name__ == '__main__':
+@app.route("/", methods=["GET"])
+def test_main():
+    response_data = {
+        "test": "hello_word",
+    }
+    return jsonify(response_data), 400
+
+
+if __name__ == "__main__":
     app.run(debug=True, port=5243)
